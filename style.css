@@ -1,0 +1,51 @@
+#test{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pkm-img{
+    height: 115px;
+}
+
+.pkm-card{
+    width: 150px;
+    height: 200px;
+    min-width: 200px;
+    background-color: aliceblue;
+    border-radius: 16px;
+}
+
+.pkm-img-container{
+    height: 120px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+/* .ta-center{
+    text-align: center;
+}
+
+.mt-10px{
+    margin-top: 10px;
+}
+
+.mb-10px{
+    margin-bottom: 10px;
+} */
+
+h2{
+    background-color: rgb(10, 97, 210);
+    text-align: center;
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}

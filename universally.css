@@ -1,0 +1,10 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+    color: rgb(20, 20, 20);
+}
+
+body{
+    background-color: rgb(13 26 32);
+}
