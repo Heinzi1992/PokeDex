@@ -6,13 +6,27 @@
     <title>PokeDex</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="universally.css">
+    <link rel="stylesheet" href="pkm-backgrounds.css">
+    <link rel="stylesheet" href="dialog.css">
 </head>
-<body onload="init()">
-
+<body id="body" onload="init()">
+    <header>
+        <input class="input" type="number" name="render-amount" id="render-amount" min="1" value="20" max="1025" oninput="inputDelay()">
+        <input class="input-2" id="search" type="text" placeholder="Search" oninput="renderFilteredPkm()">
+    </header>
     <div id="test">
 
     </div>
 
+    <button class="btn-render-more" onclick="renderMoreCards()">load more</button>
+
+    <div onclick="showAndCloseDialog()" class="overlay d-none" id="overlay">
+        
+        <div class="dialog" id="dialog">
+            
+        </div>
+        
+    </div>
    
     
 </body>

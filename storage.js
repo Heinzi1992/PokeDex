@@ -10,6 +10,7 @@ async function getDataImg(i) {
     let pkmImage = responseJson.sprites.other.home.front_default;
     
     
+    
     return pkmImage;    
 }
 

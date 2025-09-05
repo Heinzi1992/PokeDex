@@ -7,4 +7,17 @@
 
 body{
     background-color: rgb(13 26 32);
+    position: relative;
+}
+
+h2{
+    text-align: center;
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: rgb(245, 245, 245);
+}
+
+.no-scroll{
+    overflow: hidden;
 }

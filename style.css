@@ -8,6 +8,7 @@
     margin-right: auto;
     gap: 20px;
     flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .pkm-img{
@@ -15,11 +16,10 @@
 }
 
 .pkm-card{
-    width: 150px;
     height: 210px;
     min-width: 200px;
-    background-color: aliceblue;
-    border-radius: 16px;
+    background-color: rgb(28, 56, 70);
+    border-radius: 8px;
 }
 
 .pkm-img-container{
@@ -42,13 +42,7 @@
     margin-bottom: 10px;
 } */
 
-h2{
-    background-color: rgb(10, 97, 210);
-    text-align: center;
-    padding: 10px 0;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
+
 
 .pkm-type-img{
     width: 35px;
@@ -59,75 +53,34 @@ h2{
     align-items: center;
     justify-content: center;
     gap: 20px;
+    height: 54px;
     
-    padding-top: 5px;
 
 }
 
-.pkm-img-background-grass{
-    background-color: green;
+.input{
+    position: fixed;
+    top: 50px;
+    left: 30px;
 }
 
-.pkm-img-background-fire{
-    background-color: red;
+.input-2{
+    position: fixed;
+    top: 50px;
+    left: 200px;
 }
 
-.pkm-img-background-water{
-    background-color: blue;
+.btn-render-more{
+    margin-left: 100px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    
 }
 
-.pkm-img-background-bug{
-    background-color: greenyellow;
-}
+/* .card-header{
+    background-color: rgba(3, 80, 115, 0.8);
+    border-radius: 7px 7px 0 0;
+    
+    
+} */
 
-.pkm-img-background-dark{
-    background-color: rgb(83, 82, 82);
-}
-
-.pkm-img-background-dragon{
-    background-color: orange;
-}
-
-.pkm-img-background-electric{
-    background-color: yellow;
-}
-
-.pkm-img-background-fairy{
-    background-color: pink;
-}
-
-.pkm-img-background-fighting{
-    background-color: rgb(213, 173, 120);
-}
-
-.pkm-img-background-flying{
-    background-color: lightblue;
-}
-
-.pkm-img-background-ghost{
-    background-color: rgb(151, 148, 148);
-}
-
-.pkm-img-background-ground{
-    background-color: lightgray;
-}
-
-.pkm-img-background-ice{
-    background-color: rgb(116, 209, 240);
-}
-
-.pkm-img-background-poison{
-    background-color: rgb(7, 246, 7);
-}
-
-.pkm-img-background-psychic{
-    background-color: rgb(165, 32, 165);
-}
-
-.pkm-img-background-rock{
-    background-color: rgb(133, 115, 96);
-}
-
-.pkm-img-background-steel{
-    background-color: rgba(152, 141, 141, 0.659);
-}
