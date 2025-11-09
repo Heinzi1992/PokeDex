@@ -3,14 +3,19 @@ let timer;
 let renderCount = 0;
 let allPkm = [];
 let lastQuerry = '';
-const pokemonCount = 1025;     // 1025
+const pokemonCount = 386;     // 1025=all  386=3Gens  
+const amountInput = document.getElementById('render-amount');
 
 
-
+amountInput.addEventListener('input',() => {
+    if (amountInput.value > 386) {
+        amountInput.value = 386;
+    }
+});
 
 async function init() {
 
-    loadAllPkm();
+    await loadAllPkm();
     let amount = pkmrenderAmount();
     renderAll(amount);
     
@@ -25,7 +30,7 @@ async function renderAll(amount) {
     if (amount > renderCount) {
     for (let i = renderCount + 1; i <= amount; i++) {
         
-        let typesForPkm = await getData(i);
+        let typesForPkm = await getDataTypes(i);
         let imgSrc = await getDataImg(i);
         let pkmNames = await getDataName(i);
         let pkmTypes = await typesPromise(typesForPkm);
@@ -42,20 +47,6 @@ async function renderAll(amount) {
     renderCount = amount;
 }
 
-// render Dialog Window
-async function renderDialog(i) {
-    console.log(i);
-
-    let container = document.getElementById('dialog');
-    let typesForPkm = await getData(i);
-    let pkmNames = await getDataName(i);
-    let background = typesForPkm[0];
-    let imgSrc = await getDataImg(i);
-    let dialogHtml = dialogTemplate(i, pkmNames, background, imgSrc);
-    container.innerHTML = dialogHtml;
-   
-}
-
 // load all pokemon Data for search Function
 async function loadAllPkm() {
     let list = [];
@@ -63,7 +54,7 @@ async function loadAllPkm() {
     for(let i = 1; i <= pokemonCount; i++) {
         let [name, types] = await Promise.all([
             getDataName(i),
-            getData(i)
+            getDataTypes(i)
         ]);
 
         list.push({
@@ -128,26 +119,24 @@ function filterPkm(query) {
 }
 
 function removeCards(target){
-    // let container = document.getElementById('test');
-    
     for(let i = renderCount; i > target; i--) {
         let card = document.getElementById('pkm-card-' + i);
         if (card) card.remove();
     }
 }
 
+// rendering of Type Image
 async function typesPromise(typesForPkm) {
-    // let container = document.getElementById('types');
     let pkmTypesHtml = " ";
     
     for (let index = 0; index < typesForPkm.length; index++){
         let typeForPkm = typesForPkm[index];
         pkmTypesHtml += '<img class="pkm-type-img" src="imgs/' + typeForPkm + '.png" alt="' + typeForPkm + '">'
     }
-    
     return pkmTypesHtml;
 }
 
+// how much pokemon to render (Input)
 function pkmrenderAmount() {
     
     let amount = document.getElementById('render-amount').value;
@@ -160,7 +149,7 @@ function pkmrenderAmount() {
 }
 
 
-
+// for load more Button
 function renderMoreCards() {
     let input = document.getElementById('render-amount');
     let numberOfCards = input.value
@@ -170,6 +159,7 @@ function renderMoreCards() {
     inputDelay();
 }
 
+// loading List for Filter Function
 async function renderList(list) {
     let container = document.getElementById('test');
     container.innerHTML = '';
@@ -196,10 +186,11 @@ async function renderList(list) {
 async function showAndCloseDialog(i){
     document.getElementById('overlay').classList.toggle('d-none');
     document.getElementById('body').classList.toggle('no-scroll');
-    renderDialog(i);
+    
 }
 
 function closeDialog(){
     document.getElementById('overlay').classList.add('d-none')
     document.getElementById('body').classList.remove('no-scroll');
 }
+

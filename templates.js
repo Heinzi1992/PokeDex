@@ -2,7 +2,7 @@
 function pokeCardTemplate(imgSrc, i, pkmNames, background) {
     return `
     
-        <div id="pkm-card-${i}" class="pkm-card" onclick="showAndCloseDialog(${(i)})">
+        <div id="pkm-card-${i}" class="pkm-card" onclick="showAndCloseDialog(${(i)}), renderDialog(${(i)})">
             
             <h2>#${i} ${pkmNames}</h2>
             
@@ -33,5 +33,35 @@ function dialogTemplate(i, pkmNames, background, imgSrc) {
         <div class="pkm-img-container pkm-img-background-${background}" id="img-container">
                 <img id="pkm-img" class="pkm-img" src="${imgSrc}" alt=""></img>
         </div>
+        <div class="types" id="dialog-types${i}">
+        </div>
+        <div id="values"></div>
+    `
+}
+
+function dialogMainTemplate(abilities, baseExperience, weight, height){
+    return `
+    <table>
+    <tr> 
+        <td>Height</td>
+        <td class="td-center-width">:<td/>
+        <td class="td-value-padding-top"> ${height}0 cm</td>
+    </tr>
+    <tr> 
+        <td>Weight</td>
+        <td class"td-center-width">:<td/>
+        <td class="td-value-padding-top"> ${weight} kg</td>
+    </tr>
+    <tr> 
+        <td>Bace experience</td>
+        <td class"td-center-width">:<td/>
+        <td class="td-value-padding-top"> ${baseExperience}</td>
+    </tr>
+    <tr> 
+        <td>Abilities</td>
+        <td class"td-center-width">:<td/>
+        <td class="td-value-padding-top"> ${abilities}</td>
+    </tr>
+   </table>
     `
 }

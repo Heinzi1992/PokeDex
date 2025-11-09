@@ -49,3 +49,16 @@
 .d-none{
     display: none;
 }
+
+td{
+    color: whitesmoke;
+    text-align: start;
+}
+
+.td-center-width{
+    width: fit-content;
+}
+
+.td-value-padding-top{
+    padding-top: 3px;
+}
