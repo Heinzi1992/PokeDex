@@ -1,99 +1,108 @@
 
 let timer;
 let renderCount = 0;
-let allPkm = [];
+let filteredPkm = [];
 let lastQuerry = '';
-const pokemonCount = 386;     // 1025=all  386=3Gens  
+const pokemonCount = 1025;     // 1025=all  386=3Gens  
 const amountInput = document.getElementById('render-amount');
 
 
+
 amountInput.addEventListener('input',() => {
-    if (amountInput.value > 386) {
-        amountInput.value = 386;
+    if (amountInput.value > 1025) {
+        amountInput.value = 1025;
     }
 });
 
 async function init() {
-
-    await loadAllPkm();
     let amount = pkmrenderAmount();
+    await fetchMainData(pokemonCount);
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+    closeLoadingSpinnerShowCards();    
+    }, 1500); 
+    loadFilteredPokemons();
     renderAll(amount);
-    
 }
 
+function closeLoadingSpinnerShowCards(){
+    const spinnerOverlay = document.getElementById('loading-spinner-container');
+    const contentContainer = document.getElementById('content');
+    const header = document.getElementById('header');
+    const button = document.getElementById('load-more-button');
+    spinnerOverlay.classList.add('d-none');
+    contentContainer.classList.remove('d-none');
+    header.classList.remove('d-none');
+    button.classList.remove('d-none');
+}
 
 // render each Pokemon Card
 async function renderAll(amount) {
     if (amount === renderCount) return;
-    let container = document.getElementById('test');
-    // container.innerHTML = "";
     if (amount > renderCount) {
-    for (let i = renderCount + 1; i <= amount; i++) {
-        
+        pokemonCardsForRender(amount);
+    } else {
+        removeCards(amount);
+        renderCount = amount;
+    }
+}
+
+async function pokemonCardsForRender(amount){
+    let container = document.getElementById('content');
+    for (let i = renderCount; i <= amount - 1; i++) {
         let typesForPkm = await getDataTypes(i);
-        let imgSrc = await getDataImg(i);
-        let pkmNames = await getDataName(i);
-        let pkmTypes = await typesPromise(typesForPkm);
+        let imgSrc = mainDatas[i].sprites.other.home.front_default;
+        let pkmNames = mainDatas[i].name;
+        let pkmTypes = await typesHtml(typesForPkm);
         let background = typesForPkm[0];
         let cardHtml = pokeCardTemplate(imgSrc, i, pkmNames, background);
         container.insertAdjacentHTML('beforeend', cardHtml);
         let typesContainer = document.getElementById('types' + i);
         typesContainer.innerHTML = pkmTypes;
-        } 
-        } else {
-            removeCards(amount);
-            renderCount = amount;
-        }
-    renderCount = amount;
+        renderCount++;
+    } 
 }
 
-// load all pokemon Data for search Function
-async function loadAllPkm() {
-    let list = [];
-
+function loadFilteredPokemons() {
+    filteredPkm = [];
     for(let i = 1; i <= pokemonCount; i++) {
-        let [name, types] = await Promise.all([
-            getDataName(i),
-            getDataTypes(i)
-        ]);
-
-        list.push({
+        let rawData = mainDatas[i - 1];
+        let nameData = mainDatas[i - 1].name;
+        let cleanTypes = rawData.types.map(t => t.type.name);
+        let pkmObject = {
             id: i,
-            name,
-            types
-        });
-        
+            name: nameData,
+            types: cleanTypes,
+        }
+        filteredPkm.push(pkmObject)
     }
-    allPkm = list;
-    
+    return filteredPkm;
 }
 
 // render filtered Pokemon Cards
 function renderFilteredPkm() {
-    let q = document.getElementById('search').value || '';
-    let trimmed = q.trim();
-
-    if (q === lastQuerry) {
+    let query = document.getElementById('search').value || '';
+    let trimmed = query.trim();
+    if (query === lastQuerry) {
         return
     }
-
     clearTimeout(timer);
-    timer = setTimeout(() => {
+    timer = setTimeout(function() {
+        updatePokemonView(query, trimmed);
+    },750);
+}
 
+function updatePokemonView(query, trimmed){
     if (trimmed.length < 3) {
-        // zurück zum normalen Modus (Mengen-Rendering)
         lastQuerry = trimmed;
         renderCount = 0;
-        document.getElementById('test').innerHTML = '';
+        document.getElementById('content').innerHTML = '';
         const amount = pkmrenderAmount();
         renderAll(amount);
         return;
       }
-    let filtered = filterPkm(q);
-    lastQuerry = q;
-    renderList(filtered);
-    },750);
-
+    lastQuerry = query;
+    renderList(filterPkm(query));
 }
 
 // Delay renderAll for search Function, to not refresh immediatly
@@ -105,30 +114,28 @@ function inputDelay(){
     }, 750); 
 }
 
-
 function filterPkm(query) {
     let input = query.trim().toLowerCase();
     if (input.length < 3) {
-        return allPkm;
+        return filteredPkm;
     }
-    return allPkm.filter(pkm => {
+    return filteredPkm.filter(pkm => {
         let nameMatch = pkm.name.toLowerCase().includes(input);
         let typeMatch = pkm.types.some(type => type.toLowerCase().includes(input));
         return nameMatch || typeMatch;
     });
 }
 
-function removeCards(target){
-    for(let i = renderCount; i > target; i--) {
+function removeCards(amount){
+    for(let i = renderCount; i > amount - 1; i--) {
         let card = document.getElementById('pkm-card-' + i);
         if (card) card.remove();
     }
 }
 
 // rendering of Type Image
-async function typesPromise(typesForPkm) {
+function typesHtml(typesForPkm) {
     let pkmTypesHtml = " ";
-    
     for (let index = 0; index < typesForPkm.length; index++){
         let typeForPkm = typesForPkm[index];
         pkmTypesHtml += '<img class="pkm-type-img" src="imgs/' + typeForPkm + '.png" alt="' + typeForPkm + '">'
@@ -138,7 +145,6 @@ async function typesPromise(typesForPkm) {
 
 // how much pokemon to render (Input)
 function pkmrenderAmount() {
-    
     let amount = document.getElementById('render-amount').value;
     amount = Number(amount);
     if(amount <= 1) {
@@ -147,7 +153,6 @@ function pkmrenderAmount() {
     }
     return amount;
 }
-
 
 // for load more Button
 function renderMoreCards() {
@@ -160,37 +165,30 @@ function renderMoreCards() {
 }
 
 // loading List for Filter Function
-async function renderList(list) {
-    let container = document.getElementById('test');
+function errorList(list) {
+    let container = document.getElementById('content');
     container.innerHTML = '';
-  
     if (!list || list.length === 0) {
       container.innerHTML = `<p style="padding:12px; color: white;">Keine Treffer!</p>`;
       return;
     }
-  
+  }
+
+  function renderList(list) {
+    let container = document.getElementById('content');
+    errorList(list)
     for (let index = 0; index < list.length; index++) {
       let p = list[index];
-      let i = p.id;
-      let imgSrc = await getDataImg(i);          
-      let pkmTypesHtml = await typesPromise(p.types);
+      let i = p.id -1;
+      let imgSrc = mainDatas[i].sprites.other.home.front_default;          
+      let pkmTypesHtml = typesHtml(p.types);
       let background = p.types[0];
       let cardHtml = pokeCardTemplate(imgSrc, i, p.name, background);
-  
       container.insertAdjacentHTML('beforeend', cardHtml);
       let typesContainer = document.getElementById('types' + i);
       if (typesContainer) typesContainer.innerHTML = pkmTypesHtml;
     }
   }
 
-async function showAndCloseDialog(i){
-    document.getElementById('overlay').classList.toggle('d-none');
-    document.getElementById('body').classList.toggle('no-scroll');
-    
-}
 
-function closeDialog(){
-    document.getElementById('overlay').classList.add('d-none')
-    document.getElementById('body').classList.remove('no-scroll');
-}
 

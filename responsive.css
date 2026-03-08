@@ -1,0 +1,12 @@
+
+@media (max-height: 500px){
+    .scroll-under-500px-height{
+        overflow-y: scroll !important;
+    }
+}
+
+@media (max-width: 500px){
+    .font-size-h1-resp{
+        font-size: 30px;
+    }
+}

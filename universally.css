@@ -21,3 +21,36 @@ h2{
 .no-scroll{
     overflow: hidden;
 }
+
+td{
+    color: whitesmoke;
+    text-align: start;
+}
+
+.d-none{
+    display: none !important;
+}
+
+p{
+    color: white;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+h1{
+    color: rgb(235, 224, 210);
+    font-size: 60px;
+}
+
+input{
+    height: 30px;
+    width: 70px;
+    border-radius: 10px;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

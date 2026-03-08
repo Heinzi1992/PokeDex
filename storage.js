@@ -1,79 +1,122 @@
 
-let mainUrl = `https://pokeapi.co/api/v2/pokemon/`;
-let mainUrlV2 = `https://pokeapi.co/api/v2/type/`;
+const mainUrl = `https://pokeapi.co/api/v2/pokemon/`;
+const mainUrlV2 = `https://pokeapi.co/api/v2/type/`;
+const pokemonSpecies = `https://pokeapi.co/api/v2/pokemon-species/`;
+let speciesDatas = [];
+let stats = [];
+let mainDatas = [];
+let evoChainData =[];
+let evoChain = [];
+let evoImgs = [];
 
 
-
-
-async function fetchJsonData(i) {
-    let response = await fetch(mainUrl + i);   
-    let responseJson = await response.json();
-
-    return responseJson;
-}
-async function getDataImg(i) {
-    let response = await fetch(mainUrl + i)   // pokemon/?limit=10&offset=0
-    let responseJson = await response.json();
-    let pkmImage = responseJson.sprites.other.home.front_default;
-        
-    return pkmImage;    
-}
-
-async function getDataName(i) {
-    let response = await fetch(mainUrl + i)   
-    let responseJson = await response.json();
-    let pkmName = responseJson.name;
+// load all Pokemon with all Informations and pushed it into mainDatas
+async function fetchMainData(pokemonCount) {
+    mainDatas = [];
+    let pokemonPromises = [];
     
-    return pkmName;    
+    for (let i = 1; i < pokemonCount +1; i++) {
+        let url = mainUrl + i;
+        let promise = fetch(url).then(response => response.json());
+        pokemonPromises.push(promise);
+    }
+    mainDatas = await Promise.all(pokemonPromises);
+    return mainDatas;
 }
 
 async function getDataTypes(i) {
     let pkmTypeNames = [];
-    let response = await fetch(mainUrl + i)   
-    let responseJson = await response.json();
-    let pkmTp = responseJson.types;
+    let pkmTp = mainDatas[i].types;
 
     for (let index = 0; index < pkmTp.length; index ++) {
-    let pkmType = pkmTp[index].type.name;  
-    pkmTypeNames.push(pkmType); 
+        let pkmType = pkmTp[index].type.name;  
+        pkmTypeNames.push(pkmType); 
     } 
-    
     return pkmTypeNames;
 }
 
 async function getDataAbilities(i) {
     let allAbilities = [];
-    let data = await fetchJsonData(i);
-    let dataAbilities = data.abilities;
+    let dataAbilities = mainDatas[i].abilities;
+    
     for (let index = 0; index < dataAbilities.length; index ++) {
         let ability = dataAbilities[index].ability.name;  
         allAbilities.push(ability); 
     }
-    
     return allAbilities;
+}
+
+async function getAllStats(i){
+    stats = [];
+    let allStats = mainDatas[i].stats
+    
+    for (let index = 0; index < allStats.length; index++) {
+        let element = allStats[index].base_stat;
+        stats.push(element)
+    }
+    return stats;
     
 }
 
-async function getBaseExperience(i) {
-    let data = await fetchJsonData(i);
-    let dataExperience = data.base_experience;
+async function getEvoChain(){
     
-    return dataExperience;
+    await fetchEvoChainData();
+    getEvoChainNames();
+    getEvoImgs();
+    renderEvoImgs();
+    console.log(evoImgs);
 }
 
-async function getWeight(i) {
-    let data = await fetchJsonData(i);
-    let dataWeight = data.weight;
-
-    return dataWeight;
+async function fetchSpeciesData(i){
+    speciesDatas = [];
+    let speciesPromises = [];
+        let url = pokemonSpecies + (i + 1);
+        let promise = fetch(url).then(response => response.json());
+        speciesPromises.push(promise);
+    speciesDatas = await Promise.all(speciesPromises);
+    return speciesDatas;
 }
 
-async function getHeight(i) {
-    let data = await fetchJsonData(i);
-    let dataHeight = data.height;
-    
-    return dataHeight;
+async function fetchEvoChainData(){ 
+    evoChainData = [];
+    let evoPromise = [];
+    let url = speciesDatas[0].evolution_chain.url;
+    let promise = fetch(url).then(response => response.json());
+    evoPromise.push(promise);
+    evoChainData = await Promise.all(evoPromise); 
+    return evoChainData;
 }
+
+function getEvoChainNames(){
+    evoChain = [];
+    let firstEvolution = evoChainData[0].chain.species.name;
+    let secondEvolution = evoChainData[0].chain.evolves_to[0];
+    evoChain.push(firstEvolution)
+        if  (secondEvolution == undefined)
+            return evoChain;
+        else evoChain.push(secondEvolution.species.name)
+    let thirdEvolution = evoChainData[0].chain.evolves_to[0].evolves_to[0];
+        if  (thirdEvolution == undefined)
+            return evoChain;
+        else evoChain.push(thirdEvolution.species.name)
+}
+
+function getEvoImgs(){
+    evoImgs = [];
+    for (let i = 0; i < evoChain.length; i++){
+        for (let index = 0; index < mainDatas.length; index++){
+            let evoName = evoChain[i];
+            let name = mainDatas[index].name;
+            let evoImgSrc = mainDatas[index].sprites.other.home.front_default
+            if (evoName == name){
+                evoImgs.push(evoImgSrc);
+                break;
+            }
+        }
+    }
+    return evoImgs;
+}
+
 
 
 

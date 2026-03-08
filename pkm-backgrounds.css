@@ -1,67 +1,71 @@
 .pkm-img-background-grass{
-    background-color: rgba(0, 128, 0, 0.6);
+    background-color: rgba(0, 128, 0, 0.4);
 }
 
 .pkm-img-background-fire{
-    background-color: rgba(255, 0, 0, 0.6);
+    background-color: rgba(255, 0, 0, 0.4);
 }
 
 .pkm-img-background-water{
-    background-color: rgba(0, 0, 255, 0.6);
+    background-color: rgba(0, 0, 255, 0.4);
 }
 
 .pkm-img-background-bug{
-    background-color: rgba(173, 255, 47, 0.6);
+    background-color: rgba(173, 255, 47, 0.4);
 }
 
 .pkm-img-background-dark{
-    background-color: rgba(83, 82, 82, 0.6);
+    background-color: rgba(83, 82, 82, 0.4);
 }
 
 .pkm-img-background-dragon{
-    background-color: rgba(255, 165, 0, 0.6);
+    background-color: rgba(255, 165, 0, 0.4);
 }
 
 .pkm-img-background-electric{
-    background-color: rgba(255, 255, 0, 0.6);
+    background-color: rgba(255, 255, 0, 0.4);
 }
 
 .pkm-img-background-fairy{
-    background-color: rgba(255, 192, 203, 0.6);
+    background-color: rgba(255, 192, 203, 0.4);
 }
 
 .pkm-img-background-fighting{
-    background-color: rgba(213, 173, 120, 0.6);
+    background-color: rgba(213, 173, 120, 0.4);
 }
 
 .pkm-img-background-flying{
-    background-color: rgba(173, 216, 230, 0.6);
+    background-color: rgba(173, 216, 230, 0.4);
 }
 
 .pkm-img-background-ghost{
-    background-color: rgba(151, 148, 148, 0.6);
+    background-color: rgba(151, 148, 148, 0.4);
 }
 
 .pkm-img-background-ground{
-    background-color: rgba(211, 211, 211, 0.6);
+    background-color: rgba(211, 211, 211, 0.4);
 }
 
 .pkm-img-background-ice{
-    background-color: rgba(116, 209, 240, 0.6);
+    background-color: rgba(116, 209, 240, 0.4);
 }
 
 .pkm-img-background-poison{
-    background-color: rgba(7, 246, 7, 0.6);
+    background-color: rgba(7, 246, 7, 0.4);
 }
 
 .pkm-img-background-psychic{
-    background-color: rgba(165, 32, 165, 0.6);
+    background-color: rgba(165, 32, 165, 0.4);
 }
 
 .pkm-img-background-rock{
-    background-color: rgba(133, 115, 96, 0.6);
+    background-color: rgba(133, 115, 96, 0.4);
 }
 
 .pkm-img-background-steel{
-    background-color: rgba(152, 141, 141, 0.6);
+    background-color: rgba(152, 141, 141, 0.4);
+}
+
+.pkm-img-background-normal{
+    background-color: rgba(165, 112, 55, 0.4);
 }

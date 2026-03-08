@@ -1,4 +1,4 @@
-#test{
+#content{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     margin-right: auto;
     gap: 20px;
     flex-wrap: wrap;
-    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .pkm-img{
@@ -24,25 +24,22 @@
 
 .pkm-img-container{
     height: 120px;
-    background-color: rgb(238, 204, 161);
     display: flex;
     justify-content: center;
     align-items: end;
 }
 
-/* .ta-center{
-    text-align: center;
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: rgb(13 26 32);
+    height: 80px;
+    
 }
-
-.mt-10px{
-    margin-top: 10px;
-}
-
-.mb-10px{
-    margin-bottom: 10px;
-} */
-
-
 
 .pkm-type-img{
     width: 35px;
@@ -54,33 +51,44 @@
     justify-content: center;
     gap: 20px;
     height: 54px;
-    
-
-}
-
-.input{
-    position: fixed;
-    top: 50px;
-    left: 30px;
-}
-
-.input-2{
-    position: fixed;
-    top: 50px;
-    left: 200px;
 }
 
 .btn-render-more{
-    margin-left: 100px;
-    margin-top: 30px;
-    margin-bottom: 50px;
+      padding: 5px;
+      background-color: rgb(28, 56, 70);
+      color: rgb(235, 224, 210);
+      border: 1px solid rgb(235, 224, 210);
+      border-radius: 10px;
+}
+
+.btn-render-more:hover{
+    cursor: pointer;
+    scale: 1.05;
     
 }
 
-/* .card-header{
-    background-color: rgba(3, 80, 115, 0.8);
-    border-radius: 7px 7px 0 0;
-    
-    
-} */
+#loading-spinner-container{
+    position: absolute;
+    background-color: rgba(28, 56, 70, 1);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
 
+@keyframes spin{
+    0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-spinner{
+    animation: spin 2s linear infinite;
+    width: 200px;
+}
