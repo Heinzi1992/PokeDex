@@ -10,3 +10,10 @@
         font-size: 30px;
     }
 }
+
+@media (max-width: 370px){
+    .resp-stats-bar{
+        width: 200px !important;
+    }
+}
+

@@ -9,26 +9,24 @@
     <link rel="stylesheet" href="pkm-backgrounds.css">
     <link rel="stylesheet" href="dialog.css">
     <link rel="stylesheet" href="responsive.css">
+    <link rel="icon" type="image/x-icon" href="./imgs/pokeball.png">
 </head>
-<body id="body" onload="init()">
+<body id="body" onload="init(), fetchAllData()">
 
     <section id="loading-spinner-container">
         <img id="loading-spinner" src="./imgs/pokeball.png" alt="Pokeball loading Spinner">
         <p>loading...</p>
     </section>
+
     <header id="header" class="d-none">
-        <input class="input" type="number" name="render amount" id="render-amount" min="1" value="20" max="1025" oninput="inputDelay()">
         <h1 class="font-size-h1-resp">Pokedex</h1>
         <input class="input-2" id="search" type="text" name="search" placeholder="Search" oninput="renderFilteredPkm()">
     </header>
 
-    
     <div id="content" class="d-none">
-
     </div>
 
     <div onclick="closeDialog()" class="overlay d-none" id="overlay">
-        
         <div onclick="stopEventBubbling(event)" class="dialog scroll-under-500px-height" id="dialog">   
             <div id="dialog-upper-half"></div>
                 <div id="dialog-lower-half" class="display-flex">
@@ -44,8 +42,8 @@
                     </div>
                 </div>
         </div>
-        
     </div>
+
     <footer>
         <button id="load-more-button" class="btn-render-more d-none" onclick="renderMoreCards()">load more</button>
     </footer>
@@ -56,6 +54,7 @@
     <script src="storage.js"></script>
     <script src="dialog.js"></script>
     <script src="script.js"></script>
+    
 </html>
 
 

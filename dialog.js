@@ -39,7 +39,7 @@ async function renderDialog(i) {
 
 function renderPreviousDialog(i){
     if (i < 1) {
-        return
+        i = 1025;
     }
     renderDialog(i - 1);
     fetchSpeciesData(i - 1);
@@ -47,7 +47,7 @@ function renderPreviousDialog(i){
 
 function renderNextDialog(i){
     if (i >= pokemonCount - 1) {
-        return
+        i = 0;
     }
     renderDialog(i + 1);
     fetchSpeciesData(i + 1); 
@@ -56,7 +56,7 @@ function renderNextDialog(i){
 async function renderDialogValues(i){
     const statsNames = document.getElementById('stats-names').classList.add('d-none')
     const valuesContainer = document.getElementById('all-dialog-containers');
-    valuesContainer.classList.remove('evo-imgs-container', 'width-250px');
+    valuesContainer.classList.remove('evo-imgs-container', 'width-250px', 'resp-stats-bar');
     valuesContainer.innerHTML = "";
     let abilities = await renderAbilities(i);
     let baseExperience = mainDatas[i].base_experience;
@@ -96,13 +96,13 @@ function renderStatsAndStatsnameContainer(){
 function renderStatsBar(){
     const statsContainer = document.getElementById('all-dialog-containers');
     statsContainer.classList.remove('evo-imgs-container');
-    statsContainer.classList.add('width-250px');
     statsContainer.innerHTML = "";
+    statsContainer.classList.add('width-250px', 'resp-stats-bar');
     for (let index = 0; index < stats.length; index++){
         let statsBarContainer = document.createElement('div');
-        statsBarContainer.id = "my-stats"
+        statsBarContainer.id = "my-stats";
         let statBar = document.createElement('div');
-        statBar.id = "stats-bar"
+        statBar.id = "stats-bar";
         statBar.style.width = stats[index] / 2 + '%';
         statsBarContainer.appendChild(statBar);
         statsContainer.appendChild(statsBarContainer);     
@@ -110,12 +110,11 @@ function renderStatsBar(){
 }
 
 function renderEvoImgs(){
-    console.log(evoImgs);
     const statsNames = document.getElementById('stats-names').classList.add('d-none')
     const evoContainer = document.getElementById('all-dialog-containers');
+    evoContainer.classList.remove('width-250px', 'resp-stats-bar');
     evoContainer.innerHTML = "";
     evoContainer.classList.add('evo-imgs-container');
-    evoContainer.classList.remove('width-250px');
     for (let i = 0; i < evoImgs.length; i++){
         evoContainer.innerHTML += `<img class="dialog-evo-img" src="${evoImgs[i]}" alt="Evolution Image">`
     }

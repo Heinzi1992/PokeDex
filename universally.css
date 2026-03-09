@@ -5,9 +5,15 @@
     color: rgb(235, 224, 210);
 }
 
+@font-face {
+    font-family: Saira;
+    src: url(./fonts/Saira/Saira-VariableFont_wdth\,wght.ttf);
+}
+
 body{
     background-color: rgb(13 26 32);
     position: relative;
+    font-family: 'Saira', sans-serif;
 }
 
 h2{
@@ -33,7 +39,7 @@ td{
 
 p{
     color: white;
-    margin-top: 5px;
+    margin-top: -2px;
     font-size: 16px;
 }
 
@@ -44,7 +50,7 @@ h1{
 
 input{
     height: 30px;
-    width: 70px;
+    width: 150px;
     border-radius: 10px;
     color: black;
     text-align: center;

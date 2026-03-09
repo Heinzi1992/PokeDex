@@ -3,33 +3,34 @@ let timer;
 let renderCount = 0;
 let filteredPkm = [];
 let lastQuerry = '';
+let amount = 20;
 const pokemonCount = 1025;     // 1025=all  386=3Gens  
-const amountInput = document.getElementById('render-amount');
+const button = document.getElementById('load-more-button');
+const spinnerOverlay = document.getElementById('loading-spinner-container');
+const contentContainer = document.getElementById('content');
+const header = document.getElementById('header');
 
 
-
-amountInput.addEventListener('input',() => {
-    if (amountInput.value > 1025) {
-        amountInput.value = 1025;
-    }
-});
 
 async function init() {
-    let amount = pkmrenderAmount();
+   try{
+    await fetchMainData(amount);
+    await renderAll(amount);
+   }
+   catch{
+    console.log('Download failed');
+   }
+   finally{
+    closeLoadingSpinnerShowCards();
+   } 
+}
+
+async function fetchAllData(){
     await fetchMainData(pokemonCount);
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-    closeLoadingSpinnerShowCards();    
-    }, 1500); 
     loadFilteredPokemons();
-    renderAll(amount);
 }
 
 function closeLoadingSpinnerShowCards(){
-    const spinnerOverlay = document.getElementById('loading-spinner-container');
-    const contentContainer = document.getElementById('content');
-    const header = document.getElementById('header');
-    const button = document.getElementById('load-more-button');
     spinnerOverlay.classList.add('d-none');
     contentContainer.classList.remove('d-none');
     header.classList.remove('d-none');
@@ -40,15 +41,14 @@ function closeLoadingSpinnerShowCards(){
 async function renderAll(amount) {
     if (amount === renderCount) return;
     if (amount > renderCount) {
-        pokemonCardsForRender(amount);
+        pokemonCardsForRenderAll(amount);
     } else {
         removeCards(amount);
         renderCount = amount;
     }
 }
 
-async function pokemonCardsForRender(amount){
-    let container = document.getElementById('content');
+async function pokemonCardsForRenderAll(amount){
     for (let i = renderCount; i <= amount - 1; i++) {
         let typesForPkm = await getDataTypes(i);
         let imgSrc = mainDatas[i].sprites.other.home.front_default;
@@ -56,7 +56,7 @@ async function pokemonCardsForRender(amount){
         let pkmTypes = await typesHtml(typesForPkm);
         let background = typesForPkm[0];
         let cardHtml = pokeCardTemplate(imgSrc, i, pkmNames, background);
-        container.insertAdjacentHTML('beforeend', cardHtml);
+        contentContainer.insertAdjacentHTML('beforeend', cardHtml);
         let typesContainer = document.getElementById('types' + i);
         typesContainer.innerHTML = pkmTypes;
         renderCount++;
@@ -83,6 +83,9 @@ function loadFilteredPokemons() {
 function renderFilteredPkm() {
     let query = document.getElementById('search').value || '';
     let trimmed = query.trim();
+    if (query.length < 3){
+        button.classList.remove('d-none');
+    }
     if (query === lastQuerry) {
         return
     }
@@ -97,7 +100,6 @@ function updatePokemonView(query, trimmed){
         lastQuerry = trimmed;
         renderCount = 0;
         document.getElementById('content').innerHTML = '';
-        const amount = pkmrenderAmount();
         renderAll(amount);
         return;
       }
@@ -122,15 +124,9 @@ function filterPkm(query) {
     return filteredPkm.filter(pkm => {
         let nameMatch = pkm.name.toLowerCase().includes(input);
         let typeMatch = pkm.types.some(type => type.toLowerCase().includes(input));
+        button.classList.add('d-none');
         return nameMatch || typeMatch;
     });
-}
-
-function removeCards(amount){
-    for(let i = renderCount; i > amount - 1; i--) {
-        let card = document.getElementById('pkm-card-' + i);
-        if (card) card.remove();
-    }
 }
 
 // rendering of Type Image
@@ -143,21 +139,9 @@ function typesHtml(typesForPkm) {
     return pkmTypesHtml;
 }
 
-// how much pokemon to render (Input)
-function pkmrenderAmount() {
-    let amount = document.getElementById('render-amount').value;
-    amount = Number(amount);
-    if(amount <= 1) {
-        amount = 1;
-        return amount;
-    }
-    return amount;
-}
-
 // for load more Button
 function renderMoreCards() {
-    let input = document.getElementById('render-amount');
-    let numberOfCards = input.value
+    let numberOfCards = amount;
     numberOfCards = Number(numberOfCards)
     let newInputValue = numberOfCards + 20;
     if (newInputValue > 1025){
@@ -166,7 +150,7 @@ function renderMoreCards() {
         inputDelay();
         return
     }
-    input.value = newInputValue;
+    amount = newInputValue;
         renderAll(newInputValue);
 }
 

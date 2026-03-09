@@ -11,11 +11,11 @@ let evoImgs = [];
 
 
 // load all Pokemon with all Informations and pushed it into mainDatas
-async function fetchMainData(pokemonCount) {
+async function fetchMainData(pokemonValue) {
     mainDatas = [];
     let pokemonPromises = [];
-    
-    for (let i = 1; i < pokemonCount +1; i++) {
+
+    for (let i = 1; i < pokemonValue +1; i++) {
         let url = mainUrl + i;
         let promise = fetch(url).then(response => response.json());
         pokemonPromises.push(promise);
@@ -59,20 +59,18 @@ async function getAllStats(i){
 }
 
 async function getEvoChain(){
-    
     await fetchEvoChainData();
     getEvoChainNames();
     getEvoImgs();
     renderEvoImgs();
-    console.log(evoImgs);
 }
 
 async function fetchSpeciesData(i){
     speciesDatas = [];
     let speciesPromises = [];
-        let url = pokemonSpecies + (i + 1);
-        let promise = fetch(url).then(response => response.json());
-        speciesPromises.push(promise);
+    let url = pokemonSpecies + (i + 1);
+    let promise = fetch(url).then(response => response.json());
+    speciesPromises.push(promise);
     speciesDatas = await Promise.all(speciesPromises);
     return speciesDatas;
 }
@@ -81,10 +79,15 @@ async function fetchEvoChainData(){
     evoChainData = [];
     let evoPromise = [];
     let url = speciesDatas[0].evolution_chain.url;
+    try{
     let promise = fetch(url).then(response => response.json());
     evoPromise.push(promise);
-    evoChainData = await Promise.all(evoPromise); 
-    return evoChainData;
+    evoChainData = await Promise.all(evoPromise);
+    } catch {
+        console.log('No Evo Chain Datas');
+    } finally {
+        return evoChainData;
+    }
 }
 
 function getEvoChainNames(){

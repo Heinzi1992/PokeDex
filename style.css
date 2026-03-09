@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
@@ -31,14 +30,15 @@
 
 header{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 0 20px;
     align-items: center;
     position: sticky;
     top: 0;
     background-color: rgb(13 26 32);
-    height: 80px;
-    
+    height: 130px;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 .pkm-type-img{
@@ -54,11 +54,11 @@ header{
 }
 
 .btn-render-more{
-      padding: 5px;
-      background-color: rgb(28, 56, 70);
-      color: rgb(235, 224, 210);
-      border: 1px solid rgb(235, 224, 210);
-      border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(28, 56, 70);
+    color: rgb(235, 224, 210);
+    border: 1px solid rgb(235, 224, 210);
+    border-radius: 10px;
 }
 
 .btn-render-more:hover{
