@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     scroll-behavior: smooth;
-    color: rgb(20, 20, 20);
+    color: rgb(235, 224, 210);
 }
 
 body{
@@ -46,6 +46,8 @@ input{
     height: 30px;
     width: 70px;
     border-radius: 10px;
+    color: black;
+    text-align: center;
 }
 
 footer{

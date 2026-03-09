@@ -17,9 +17,9 @@
         <p>loading...</p>
     </section>
     <header id="header" class="d-none">
-        <input class="input" type="number" name="render-amount" id="render-amount" min="1" value="20" max="1025" oninput="inputDelay()">
+        <input class="input" type="number" name="render amount" id="render-amount" min="1" value="20" max="1025" oninput="inputDelay()">
         <h1 class="font-size-h1-resp">Pokedex</h1>
-        <input class="input-2" id="search" type="text" placeholder="Search" oninput="renderFilteredPkm()">
+        <input class="input-2" id="search" type="text" name="search" placeholder="Search" oninput="renderFilteredPkm()">
     </header>
 
     
@@ -31,7 +31,6 @@
         
         <div onclick="stopEventBubbling(event)" class="dialog scroll-under-500px-height" id="dialog">   
             <div id="dialog-upper-half"></div>
-
                 <div id="dialog-lower-half" class="display-flex">
                     <section id="stats-names" class="stats-names d-none">
                         <p>hp</p>
@@ -41,7 +40,6 @@
                         <p>special-defense</p>
                         <p>speed</p>
                     </section>
-
                     <div id="all-dialog-containers">
                     </div>
                 </div>

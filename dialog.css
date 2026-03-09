@@ -117,3 +117,27 @@ h3{
     width: 250px !important;
 }
 
+#prev-and-next-buttons-dialog-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-prev-next-dialog{
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 19px;
+    color: aqua;
+}
+
+.button-prev-next-dialog:hover{
+    cursor: pointer;
+    scale: 1.05;
+    color: rgb(5, 121, 121);
+}
+
+.h2-dialog{
+    padding-top: 0 !important;
+}
+

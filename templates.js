@@ -6,7 +6,9 @@ function pokeCardTemplate(imgSrc, i, pkmNames, background) {
             <div class="pkm-img-container pkm-img-background-${background}" id="img-container">
                 <img id="pkm-img" class="pkm-img" src="${imgSrc}" alt=""></img>
             </div>
-            <div class="types" id="types${i}"> 
+                
+                <div class="types" id="types${i}"> 
+                           
             </div>
         </div>
     `
@@ -20,7 +22,11 @@ function pkmTypeImgTemplate(typeImgSrc) {
 
 function dialogTemplate(i, pkmNames, background, imgSrc) {
     return `
-        <h2 class="ta-center mt-10px mb-10px">#${i + 1} ${pkmNames}</h2>
+        <section id="prev-and-next-buttons-dialog-container">
+            <button class="button-prev-next-dialog" onclick="renderPreviousDialog(${i})">< Previous</button>
+            <button class="button-prev-next-dialog" onclick="renderNextDialog(${i})">Next ></button>
+        </section>
+        <h2 class="h2-dialog ta-center mt-10px mb-10px">#${i + 1} ${pkmNames}</h2>
         <div class="pkm-img-dialog pkm-img-background-${background}" id="img-container">
                 <img id="pkm-img" class="pkm-img-dialog-size" src="${imgSrc}" alt=""></img>
         </div>

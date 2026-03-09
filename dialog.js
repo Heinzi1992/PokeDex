@@ -37,6 +37,22 @@ async function renderDialog(i) {
     renderDialogValues(i);
 }
 
+function renderPreviousDialog(i){
+    if (i < 1) {
+        return
+    }
+    renderDialog(i - 1);
+    fetchSpeciesData(i - 1);
+}
+
+function renderNextDialog(i){
+    if (i >= pokemonCount - 1) {
+        return
+    }
+    renderDialog(i + 1);
+    fetchSpeciesData(i + 1); 
+}
+
 async function renderDialogValues(i){
     const statsNames = document.getElementById('stats-names').classList.add('d-none')
     const valuesContainer = document.getElementById('all-dialog-containers');

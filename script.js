@@ -160,8 +160,14 @@ function renderMoreCards() {
     let numberOfCards = input.value
     numberOfCards = Number(numberOfCards)
     let newInputValue = numberOfCards + 20;
+    if (newInputValue > 1025){
+        newInputValue = 1025;
+        input.value = newInputValue;
+        inputDelay();
+        return
+    }
     input.value = newInputValue;
-    inputDelay();
+        renderAll(newInputValue);
 }
 
 // loading List for Filter Function
@@ -169,7 +175,7 @@ function errorList(list) {
     let container = document.getElementById('content');
     container.innerHTML = '';
     if (!list || list.length === 0) {
-      container.innerHTML = `<p style="padding:12px; color: white;">Keine Treffer!</p>`;
+      container.innerHTML = `<p style="padding:12px; color: white;">No Results!</p>`;
       return;
     }
   }
