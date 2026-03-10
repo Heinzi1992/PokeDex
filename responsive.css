@@ -1,4 +1,3 @@
-
 @media (max-height: 500px){
     .scroll-under-500px-height{
         overflow-y: scroll !important;
@@ -16,4 +15,3 @@
         width: 200px !important;
     }
 }
-

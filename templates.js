@@ -1,4 +1,3 @@
-
 function pokeCardTemplate(imgSrc, i, pkmNames, background) {
     return `
         <div id="pkm-card-${i}" class="pkm-card" onclick="showDialog(${(i)}), renderDialog(${(i)}), getAllStats(${(i)})">

@@ -1,4 +1,3 @@
-
 const mainUrl = `https://pokeapi.co/api/v2/pokemon/`;
 const mainUrlV2 = `https://pokeapi.co/api/v2/type/`;
 const pokemonSpecies = `https://pokeapi.co/api/v2/pokemon-species/`;
@@ -9,18 +8,20 @@ let evoChainData =[];
 let evoChain = [];
 let evoImgs = [];
 
-
 // load all Pokemon with all Informations and pushed it into mainDatas
 async function fetchMainData(pokemonValue) {
     mainDatas = [];
     let pokemonPromises = [];
-
-    for (let i = 1; i < pokemonValue +1; i++) {
-        let url = mainUrl + i;
-        let promise = fetch(url).then(response => response.json());
-        pokemonPromises.push(promise);
+    try{
+        for (let i = 1; i < pokemonValue +1; i++) {
+            let url = mainUrl + i;
+            let promise = fetch(url).then(response => response.json());
+            pokemonPromises.push(promise);
+        }
+        mainDatas = await Promise.all(pokemonPromises);
+    }   catch{
+        console.log('dowload main datas failed');
     }
-    mainDatas = await Promise.all(pokemonPromises);
     return mainDatas;
 }
 
@@ -55,7 +56,6 @@ async function getAllStats(i){
         stats.push(element)
     }
     return stats;
-    
 }
 
 async function getEvoChain(){
@@ -69,9 +69,13 @@ async function fetchSpeciesData(i){
     speciesDatas = [];
     let speciesPromises = [];
     let url = pokemonSpecies + (i + 1);
-    let promise = fetch(url).then(response => response.json());
-    speciesPromises.push(promise);
-    speciesDatas = await Promise.all(speciesPromises);
+    try{
+        let promise = fetch(url).then(response => response.json());
+        speciesPromises.push(promise);
+        speciesDatas = await Promise.all(speciesPromises);
+    }   catch{
+        console.log('No Species Datas'); 
+    }
     return speciesDatas;
 }
 
@@ -80,12 +84,12 @@ async function fetchEvoChainData(){
     let evoPromise = [];
     let url = speciesDatas[0].evolution_chain.url;
     try{
-    let promise = fetch(url).then(response => response.json());
-    evoPromise.push(promise);
-    evoChainData = await Promise.all(evoPromise);
-    } catch {
+        let promise = fetch(url).then(response => response.json());
+        evoPromise.push(promise);
+        evoChainData = await Promise.all(evoPromise);
+    }   catch {
         console.log('No Evo Chain Datas');
-    } finally {
+    }   finally {
         return evoChainData;
     }
 }
@@ -119,7 +123,3 @@ function getEvoImgs(){
     }
     return evoImgs;
 }
-
-
-
-

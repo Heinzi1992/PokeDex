@@ -1,6 +1,3 @@
-
-
-
 function showDialog(i){
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('body').classList.add('no-scroll');
@@ -119,4 +116,3 @@ function renderEvoImgs(){
         evoContainer.innerHTML += `<img class="dialog-evo-img" src="${evoImgs[i]}" alt="Evolution Image">`
     }
 }
-
