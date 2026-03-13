@@ -1,141 +1,164 @@
-.overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    width: 100%;
-    min-height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+/* Overlay for dialog background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* Main dialog window styling */
 .dialog {
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 1em; 
-    width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 530px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-    background-color: rgb(28, 56, 70);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1em;
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 530px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: rgb(28, 56, 70);
 }
 
-.pkm-img-dialog{
-    height: 140px;
-    display: flex;
-    justify-content: center;
-    align-items: end;
+/* Dialog Pokémon image container */
+.pkm-img-dialog {
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }
 
-.pkm-img-dialog-size{
-    height: 140px;
+/* Dialog Pokémon image size */
+.pkm-img-dialog-size {
+  height: 140px;
 }
 
-.td-center-width{
-    width: fit-content;
+/* Table cell width for center alignment */
+.td-center-width {
+  width: fit-content;
 }
 
-.td-value-padding-top{
-    padding-top: 3px;
+/* Padding for value cells in table */
+.td-value-padding-top {
+  padding-top: 3px;
 }
 
-#stats-selection{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+/* Container for stats selection buttons */
+#stats-selection {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
-h3{
-    width: 100%;
-    text-align: center;
+/* Headline styling for h3 in dialog */
+h3 {
+  width: 100%;
+  text-align: center;
 }
 
-#all-dialog-containers{
-    margin-top: 30px;
-    width: 100%;
+/* Container for all dialog content */
+#all-dialog-containers {
+  margin-top: 30px;
+  width: 100%;
 }
 
-.selector{
-    color: aqua;
+/* Selector button styling */
+.selector {
+  color: aqua;
 }
 
-.selector:hover{
-    scale: 1.05;
-    border-bottom: 2px solid red;
-    margin-bottom: -3px;
-    color: rgb(5, 121, 121);
-    cursor: pointer;
+/* Selector hover effect */
+.selector:hover {
+  scale: 1.05;
+  border-bottom: 2px solid red;
+  margin-bottom: -3px;
+  color: rgb(5, 121, 121);
+  cursor: pointer;
 }
 
-.border-bottom-selector{
-    border-bottom: 2px solid red;
-    margin-bottom: -3px;
-    border-width: 100%;
+/* Red border for selected selector */
+.border-bottom-selector {
+  border-bottom: 2px solid red;
+  margin-bottom: -3px;
+  border-width: 100%;
 }
 
-#my-stats{
-    width: 100%;
-    border: solid 1px red;
-    border-radius: 20px;
-    margin-top: 5px;
+/* Stats bar container */
+#my-stats {
+  width: 100%;
+  border: solid 1px red;
+  border-radius: 20px;
+  margin-top: 5px;
 }
 
-#stats-bar{
-    width: 20%;
-    height: 16px;
-    background-color: rgba(220, 8, 8, 0.85);
-    border-radius: 20px;
+/* Stats bar fill */
+#stats-bar {
+  width: 20%;
+  height: 16px;
+  background-color: rgba(220, 8, 8, 0.85);
+  border-radius: 20px;
 }
 
-.display-flex{
-    display: flex;
-    flex-direction: row;
+/* Flex row utility */
+.display-flex {
+  display: flex;
+  flex-direction: row;
 }
 
-.stats-names{
-    margin-top: 30px;
-    width: 150px;
+/* Stats names column */
+.stats-names {
+  margin-top: 30px;
+  width: 150px;
 }
 
-.dialog-evo-img{
-    width: 90px;
-    margin-top: 15px;
+/* Evolution image in dialog */
+.dialog-evo-img {
+  width: 90px;
+  margin-top: 15px;
 }
 
-.evo-imgs-container{
-    display: flex;
-    align-items:center;
-    justify-content: space-around;  
+/* Container for evolution images */
+.evo-imgs-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.width-250px{
-    width: 250px !important;
+/* Fixed width for stats bar */
+.width-250px {
+  width: 250px !important;
 }
 
-#prev-and-next-buttons-dialog-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Container for previous/next dialog buttons */
+#prev-and-next-buttons-dialog-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.button-prev-next-dialog{
-    padding: 3px;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    font-size: 19px;
-    color: aqua;
+/* Previous/next dialog button styling */
+.button-prev-next-dialog {
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 19px;
+  color: aqua;
 }
 
-.button-prev-next-dialog:hover{
-    cursor: pointer;
-    scale: 1.05;
-    color: rgb(5, 121, 121);
+/* Previous/next dialog button hover effect */
+.button-prev-next-dialog:hover {
+  cursor: pointer;
+  scale: 1.05;
+  color: rgb(5, 121, 121);
 }
 
-.h2-dialog{
-    padding-top: 0 !important;
+/* Dialog headline styling */
+.h2-dialog {
+  padding-top: 0 !important;
 }

@@ -1,17 +1,20 @@
-@media (max-height: 500px){
-    .scroll-under-500px-height{
-        overflow-y: scroll !important;
-    }
+/* Enable vertical scroll for short screens */
+@media (max-height: 500px) {
+  .scroll-under-500px-height {
+    overflow-y: scroll !important;
+  }
 }
 
-@media (max-width: 500px){
-    .font-size-h1-resp{
-        font-size: 30px;
-    }
+/* Responsive headline font size for small screens */
+@media (max-width: 500px) {
+  .font-size-h1-resp {
+    font-size: 30px;
+  }
 }
 
-@media (max-width: 370px){
-    .resp-stats-bar{
-        width: 200px !important;
-    }
+/* Responsive stats bar width for very small screens */
+@media (max-width: 370px) {
+  .resp-stats-bar {
+    width: 200px !important;
+  }
 }

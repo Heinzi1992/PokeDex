@@ -1,64 +1,75 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    scroll-behavior: smooth;
-    color: rgb(235, 224, 210);
+/* Universal box-sizing and base color settings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+  color: rgb(235, 224, 210);
 }
 
+/* Custom font-face for Saira */
 @font-face {
-    font-family: Saira;
-    src: url(./fonts/Saira/Saira-VariableFont_wdth\,wght.ttf);
+  font-family: Saira;
+  src: url(./fonts/Saira/Saira-VariableFont_wdth\,wght.ttf);
 }
 
-body{
-    background-color: rgb(13 26 32);
-    position: relative;
-    font-family: 'Saira', sans-serif;
+/* Body background and font settings */
+body {
+  background-color: rgb(13 26 32);
+  position: relative;
+  font-family: "Saira", sans-serif;
 }
 
-h2{
-    text-align: center;
-    padding: 10px 0;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    color: rgb(245, 245, 245);
+/* Headline h2 styling */
+h2 {
+  text-align: center;
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: rgb(245, 245, 245);
 }
 
-.no-scroll{
-    overflow: hidden;
+/* Utility class to disable scrolling */
+.no-scroll {
+  overflow: hidden;
 }
 
-td{
-    color: whitesmoke;
-    text-align: start;
+/* Table cell styling */
+td {
+  color: whitesmoke;
+  text-align: start;
 }
 
-.d-none{
-    display: none !important;
+/* Utility class to hide elements */
+.d-none {
+  display: none !important;
 }
 
-p{
-    color: white;
-    margin-top: -2px;
-    font-size: 16px;
+/* Paragraph styling */
+p {
+  color: white;
+  margin-top: -2px;
+  font-size: 16px;
 }
 
-h1{
-    color: rgb(235, 224, 210);
-    font-size: 60px;
+/* Headline h1 styling */
+h1 {
+  color: rgb(235, 224, 210);
+  font-size: 60px;
 }
 
-input{
-    height: 30px;
-    width: 150px;
-    border-radius: 10px;
-    color: black;
-    text-align: center;
+/* Input field styling */
+input {
+  height: 30px;
+  width: 150px;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
 }
 
-footer{
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
+/* Footer styling */
+footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }

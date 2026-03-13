@@ -1,58 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PokeDex</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="universally.css">
-    <link rel="stylesheet" href="pkm-backgrounds.css">
-    <link rel="stylesheet" href="dialog.css">
-    <link rel="stylesheet" href="responsive.css">
-    <link rel="icon" type="image/x-icon" href="./imgs/pokeball.png">
-</head>
-<body id="body" onload="init()">
-
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="universally.css" />
+    <link rel="stylesheet" href="pkm-backgrounds.css" />
+    <link rel="stylesheet" href="dialog.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="icon" type="image/x-icon" href="./imgs/pokeball.png" />
+  </head>
+  <body id="body" onload="init()">
     <section id="loading-spinner-container">
-        <img id="loading-spinner" src="./imgs/pokeball.png" alt="Pokeball loading Spinner">
-        <p>loading...</p>
+      <img
+        id="loading-spinner"
+        src="./imgs/pokeball.png"
+        alt="Pokeball loading Spinner"
+      />
+      <p>loading...</p>
     </section>
 
     <header id="header" class="d-none">
-        <h1 class="font-size-h1-resp">Pokedex</h1>
-        <input class="input-2" id="search" type="text" name="search" placeholder="Search" oninput="renderFilteredPkm()">
+      <h1 class="font-size-h1-resp">Pokedex</h1>
+      <input
+        class="input-2"
+        id="search"
+        type="text"
+        name="search"
+        placeholder="Search"
+        oninput="renderFilteredPkm()"
+      />
     </header>
 
-    <div id="content" class="d-none">
-    </div>
+    <div id="content" class="d-none"></div>
 
     <div onclick="closeDialog()" class="overlay d-none" id="overlay">
-        <div onclick="stopEventBubbling(event)" class="dialog scroll-under-500px-height" id="dialog">   
-            <div id="dialog-upper-half"></div>
-                <div id="dialog-lower-half" class="display-flex">
-                    <section id="stats-names" class="stats-names d-none">
-                        <p>hp</p>
-                        <p>attack</p>
-                        <p>defense</p>
-                        <p>special-attack</p>
-                        <p>special-defense</p>
-                        <p>speed</p>
-                    </section>
-                    <div id="all-dialog-containers">
-                    </div>
-                </div>
+      <div
+        onclick="stopEventBubbling(event)"
+        class="dialog scroll-under-500px-height"
+        id="dialog"
+      >
+        <div id="dialog-upper-half"></div>
+        <div id="dialog-lower-half" class="display-flex">
+          <section id="stats-names" class="stats-names d-none">
+            <p>hp</p>
+            <p>attack</p>
+            <p>defense</p>
+            <p>special-attack</p>
+            <p>special-defense</p>
+            <p>speed</p>
+          </section>
+          <div id="all-dialog-containers"></div>
         </div>
+      </div>
     </div>
 
     <footer>
-        <button id="load-more-button" class="btn-render-more d-none" onclick="renderMoreCards()">load more</button>
+      <button
+        id="load-more-button"
+        class="btn-render-more d-none"
+        onclick="renderMoreCards()"
+      >
+        load more
+      </button>
     </footer>
-    
-</body>
+  </body>
 
-    <script src="templates.js"></script>
-    <script src="storage.js"></script>
-    <script src="dialog.js"></script>
-    <script src="script.js"></script>
-    
+  <script src="templates.js"></script>
+  <script src="storage.js"></script>
+  <script src="dialog.js"></script>
+  <script src="script.js"></script>
 </html>
